@@ -1,13 +1,12 @@
 :root {
+    font-size: 62.5%;
     --padx: 72px;
     --top: 70px;
-    font-size: 62.5%;
-    --heading: 10.4rem;
-    --line-height: 95px;
+    --heading: clamp(4.9rem, 12vw + 1rem, 10.4rem);
     --body: 2.4rem;
-    --btn: 
+    --logo: 2.8rem;
+    --line-height: 100%;
 }
-
 body{
     margin: 0;
     font-family: 'poppins', sans-serif;
@@ -28,19 +27,19 @@ header{
     border-bottom: 1px solid #aaa;
 }
 header .logo{
-    font-weight: bold;
-    font-size: 2.4rem; 
+    font-weight: 700;
+    font-size: var(--logo); 
 }
 header .logo:hover{
-    opacity: .7;
+    opacity: .8;
 }
 nav{
     display: flex;
     column-gap: 15px;
-    font-size: 2.2rem;
 }
 nav a{
     position: relative;
+    font-size: var(--body);
 }
 nav a::before{
     position: absolute;
@@ -76,10 +75,6 @@ nav a:hover::before{
     line-height: var(--line-height);
     margin-bottom: 20px;
     position: relative;
-    & span{
-        color: #888;
-        font-size: 60%;
-    }
  }
  .hero button{
     padding: 18px 0;
@@ -103,6 +98,22 @@ nav a:hover::before{
     & span{
         transform: translateX(5px);
     }
+ }
+ .socials{
+    display: grid;
+    row-gap: 10px;
+    position: absolute;
+    bottom: 30px;
+    right: var(--padx);
+    width: 30px;
+ }
+ .socials svg{
+    width: 30px;
+    cursor: pointer;
+
+ }
+ .socials svg:hover{
+    scale: 1.1;
  }
 
 
@@ -149,8 +160,6 @@ nav a:hover::before{
 @media screen and (max-width: 768px) {
     :root {
         --padx: 20px;
-        --heading: 7rem;
-        --line-height: 65px;
     }
     .menu{
         display: block;
@@ -158,21 +167,20 @@ nav a:hover::before{
     nav{
         display: flex;
         flex-direction: column;
-        position: fixed;
+        position: absolute;
         z-index: 10;
         top: var(--top);
-        right: 0;
         left: 0;
-        width: 100%;
+        right: 0;
         max-height: 0;
         padding: 0 var(--padx);
         overflow: hidden;
         background-color: #fff;
-        border-bottom: 1px solid #777;
+        border-bottom: 1px solid transparent;
         transition: max-height .4s;
     }
     nav a{
-        font-size: 4.8rem;
+        font-size: 4rem;
         font-weight: bold;
         padding: 15px 0;
         width: fit-content;
@@ -183,6 +191,7 @@ nav a:hover::before{
     }
     nav[data-drop="true"]{
         box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.2);
+        border-bottom-color: #aaa;
     }
     nav a::after{
         position: absolute;
@@ -195,7 +204,7 @@ nav a:hover::before{
         stroke: black;
         transform: translateX(5px);
         transition: transform .2s;
-        pointer-events: none;
+        user-select: none;
     }
     nav a:hover::after{
         transform: translateX(15px);
@@ -204,12 +213,6 @@ nav a:hover::before{
 
 @media screen and (max-width: 425px) {
     :root {
-        --heading: 4.8rem;
-        --line-height: 45px;
         --body: 2rem;
     }
-    .hero {
-        margin: 0 auto;
-    }
-
 }
