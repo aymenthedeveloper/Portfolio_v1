@@ -1,14 +1,16 @@
 :root {
     font-size: 62.5%;
-    --padx: 72px;
-    --top: 70px;
+    --padx: 70px;
+    --top: 7rem;
     --heading: clamp(4.9rem, 12vw + 1rem, 10.4rem);
+    --sub-heading: clamp(2.8rem, 5vw + 1rem, 6rem);
     --body: 2.4rem;
     --logo: 2.8rem;
-    --line-height: 100%;
+    scroll-behavior: smooth;
 }
 body{
     margin: 0;
+    padding-bottom: 100px;
     font-family: 'poppins', sans-serif;
 }
 a{
@@ -17,18 +19,18 @@ a{
 }
 header{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
-    height: var(--top);
+    justify-content: space-between;
     padding: 0 var(--padx);
+    position: relative;
+    min-height: var(--top);
     background-color: #fff;
     box-sizing: border-box;
     border-bottom: 1px solid #aaa;
 }
 header .logo{
     font-weight: 700;
-    font-size: var(--logo); 
+    font-size: var(--logo);
 }
 header .logo:hover{
     opacity: .8;
@@ -62,7 +64,9 @@ nav a:hover::before{
     flex-direction: column;
     justify-content: center;
     padding: 0 var(--padx);
-    min-height: calc(100vh - var(--top));
+    min-height: calc(100vh - var(--top)); 
+    /* backup style if the browser doesnt support svh  */
+    min-height: calc(100svh - var(--top)); 
  }
  .hero p{
     font-size: var(--body);
@@ -72,7 +76,7 @@ nav a:hover::before{
  .hero h1{
     font-size: var(--heading);
     margin: 0;
-    line-height: var(--line-height);
+    line-height: 100%;
     margin-bottom: 20px;
     position: relative;
  }
@@ -103,7 +107,7 @@ nav a:hover::before{
     display: grid;
     row-gap: 10px;
     position: absolute;
-    bottom: 30px;
+    bottom: 10px;
     right: var(--padx);
     width: 30px;
  }
@@ -116,6 +120,51 @@ nav a:hover::before{
     scale: 1.1;
  }
 
+ /* features */
+
+ .about{
+     padding: 0 var(--padx);
+ }
+ .about > h2{
+    font-size: var(--sub-heading);
+    width: 15ch;
+    line-height: 100%;
+}
+.about > h2 span{
+     color: #444;
+ }
+ .features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    font-weight: 600;
+ }
+ .features .feature{
+     border: 1px solid;
+     border-radius: 2rem;
+     padding: 2rem;
+     transition: scale .2s ease;
+     cursor: pointer;
+}
+.features .feature img {
+    width: 100%;
+}
+.features .feature p:first-of-type{        
+    font-size: 1.8rem;
+    margin: 0;
+}
+.features .feature p:last-of-type{        
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+.features:has(> :hover) .feature:not(:hover){
+    scale: .97;
+}  
+.features:has(> :hover) .feature:hover{
+    scale: 1.03;
+}
+    
 
 
 
@@ -180,6 +229,7 @@ nav a:hover::before{
         transition: max-height .4s;
     }
     nav a{
+        user-select: none;
         font-size: 4rem;
         font-weight: bold;
         padding: 15px 0;
@@ -197,17 +247,28 @@ nav a:hover::before{
         position: absolute;
         top: 40%;
         content: "";
-        background-image: url(images/iconmonstr-arrow-20.svg);
+        background-image: url(images/rightArrow.svg);
         background-repeat: no-repeat;
         width: 100%;
         height: 100%;
         stroke: black;
         transform: translateX(5px);
         transition: transform .2s;
-        user-select: none;
     }
     nav a:hover::after{
         transform: translateX(15px);
+    }
+    .features {
+        grid-template-columns: 1fr;
+    }
+    .features .feature{
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .features .feature img{
+        max-width: 100px;
+        max-height: 100px;
     }
 }
 
